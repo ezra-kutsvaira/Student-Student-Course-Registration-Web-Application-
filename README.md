@@ -28,7 +28,7 @@ A Java web application for managing course registration using **Servlets**, **JS
 - 🔌 JDBC
 - 🐬 MySQL
 - 🌐 Apache Tomcat
-- 🐳 Docker / Docker Compose *(optional)*
+- 🐳 Docker / Docker Compose 
 
 ---
 
