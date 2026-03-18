@@ -26,7 +26,7 @@ public class RegistrationDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(INSERT_REGISTRATION_SQL)){
     				
     		preparedStatement.setInt(1, userId);
-    		preparedStatement.setInt(1, courseId);
+    		preparedStatement.setInt(2, courseId);
     		return preparedStatement.executeUpdate() > 0;
 		}catch (SQLException e) {
 			e.printStackTrace();
