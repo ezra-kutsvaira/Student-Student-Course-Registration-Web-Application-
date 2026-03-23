@@ -18,6 +18,7 @@ A Java web application for managing course registration using **Servlets**, **JS
   - 📝 Register for courses
   - 📚 View registered courses
 - 🧩 **JDBC integration** with `PreparedStatement` for safer SQL operations
+- 🐳 **Dockerized application deployment** with support for an existing MySQL database
 
 ---
 
@@ -28,7 +29,8 @@ A Java web application for managing course registration using **Servlets**, **JS
 - 🔌 JDBC
 - 🐬 MySQL
 - 🌐 Apache Tomcat
-- 🐳 Docker / Docker Compose 
+- 🐳 Docker / Docker Compose
+- 📦 Maven
 
 ---
 
@@ -54,6 +56,8 @@ src/main/webapp/
 
 ## 🗄️ Database Tables
 
+The application expects these tables to already exist in your MySQL database:
+
 - `users`
 - `courses`
 - `registrations`
@@ -65,24 +69,63 @@ src/main/webapp/
 
 ---
 
-## ⚡ Quick Start
+## ⚡ Quick Start with Docker
 
-1. 🏗️ Create the database and tables (`users`, `courses`, `registrations`).
-2. 🌱 Add sample users and courses.
-3. 🔧 Configure JDBC connection in `DBConnection`.
-4. 📦 Build and deploy the app to Tomcat.
-5. 🌍 Open the app and log in as admin or student.
+### Prerequisites
+- Docker
+- Docker Compose
+- An existing MySQL database reachable from the Docker container
+
+### Configure the database connection
+
+Update the environment variables in `docker-compose.yml` to match your existing database:
+
+- `DB_HOST`
+- `DB_PORT`
+- `DB_NAME`
+- `DB_USER`
+- `DB_PASSWORD`
+- `DB_SSL`
+- `DB_ALLOW_PUBLIC_KEY_RETRIEVAL`
+- `DB_SERVER_TIMEZONE`
+
+> The included compose file uses `host.docker.internal` so the container can connect to a MySQL server running on the Docker host.
+
+### Start the application container
+
+```bash
+docker compose up --build
+```
+
+The application will be available at:
+- App: http://localhost:8080
+
+### Stop the container
+
+```bash
+docker compose down
+```
 
 ---
 
-## 🎯 Suggested Core Scope
+## 🔧 Local non-Docker development
 
-This project is intentionally kept small and focused for academic requirements:
+The database connection is configurable through environment variables:
 
-- ✅ Authentication + session management
-- ✅ Admin course CRUD
-- ✅ Student course registration
-- ✅ JDBC CRUD operations with `PreparedStatement`
+- `DB_HOST` (default: `localhost`)
+- `DB_PORT` (default: `3306`)
+- `DB_NAME` (default: `student_registration`)
+- `DB_USER` (default: `root`)
+- `DB_PASSWORD` (default: `anotidae15`)
+- `DB_SSL` (default: `false`)
+- `DB_ALLOW_PUBLIC_KEY_RETRIEVAL` (default: `true`)
+- `DB_SERVER_TIMEZONE` (default: `UTC`)
+
+You can still build the application manually with:
+
+```bash
+mvn clean package
+```
 
 ---
 
@@ -90,8 +133,10 @@ This project is intentionally kept small and focused for academic requirements:
 
 - For demonstration projects, plaintext passwords may be used.
 - 🔒 In production, passwords should always be hashed.
+- This repository no longer provisions or seeds a MySQL container; it connects to the database you already manage.
 
 ---
 
 ## 📄 License
 
+This project is for educational use.
