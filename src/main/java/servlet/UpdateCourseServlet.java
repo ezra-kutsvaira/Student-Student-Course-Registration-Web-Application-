@@ -68,6 +68,14 @@ public class UpdateCourseServlet extends HttpServlet{
             return;
         }
 
+        Course course = new Course(courseId, courseCode.trim(), courseName.trim(), lecturer.trim(), credits, capacity);
+        boolean updated = courseDAO.updateCourse(course);
+
+        if (updated) {
+            redirectWithMessage(response, request, "Course updated successfully.");
+        } else {
+            redirectWithMessage(response, request, "Unable to update course.");
+        }
     }
     
     private void redirectWithMessage(HttpServletResponse response, HttpServletRequest request, String message) throws IOException {
