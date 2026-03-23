@@ -97,8 +97,10 @@ Update the environment variables in `docker-compose.yml` to match your existing 
 docker compose up --build
 ```
 
+The Docker setup publishes container port `8080` on host port `9090` to reduce host-port conflicts.
+
 The application will be available at:
-- App: http://localhost:8080
+- App: http://localhost:9090
 
 ### Stop the container
 
