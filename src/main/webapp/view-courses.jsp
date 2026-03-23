@@ -11,9 +11,11 @@ List<Course> courses = (List<Course>) request.getAttribute("courses");
 String message = request.getParameter("message");
 int totalCourses = courses == null ? 0 : courses.size();
 int totalCapacity = 0;
+int totalEnrolled = 0;
 if (courses != null) {
     for (Course course : courses) {
         totalCapacity += course.getCapacity();
+        totalEnrolled += course.getEnrolledCount();
     }
 }
 %>
@@ -53,7 +55,7 @@ if (courses != null) {
       <div class="grid-3" style="margin-top: 24px;">
         <div class="stat"><div class="label">Courses</div><div class="value"><%= totalCourses %></div></div>
         <div class="stat"><div class="label">Total seats</div><div class="value"><%= totalCapacity %></div></div>
-        <div class="stat"><div class="label">Status</div><div class="value">Active</div></div>
+       	<div class="stat"><div class="label">Students enrolled</div><div class="value"><%= totalEnrolled %></div></div>
       </div>
     </div>
     <aside class="glass form-card">
@@ -114,6 +116,8 @@ if (courses != null) {
               <th>Lecturer</th>
               <th>Credits</th>
               <th>Capacity</th>
+              <th>Enrolled</th>
+              <th>Slots left</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -125,6 +129,8 @@ if (courses != null) {
                 <td><%= course.getLecturer() %></td>
                 <td><%= course.getCredits() %></td>
                 <td><%= course.getCapacity() %></td>
+                <td><%= course.getEnrolledCount() %></td>
+                <td><%= course.getSlotsLeft() %></td>
                 <td>
                   <div class="actions-inline">
                     <a class="btn btn-warning" href="<%= request.getContextPath() %>/UpdateCourseServlet?courseId=<%= course.getCourseId() %>">Edit</a>
