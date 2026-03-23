@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/ViewCourseServlet")
+@WebServlet("/ViewCoursesServlet")
 public class ViewCoursesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private final CourseDAO courseDAO = new CourseDAO();
