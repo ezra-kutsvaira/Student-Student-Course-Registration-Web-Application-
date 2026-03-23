@@ -41,6 +41,13 @@ public class RegisterCourseServlet extends HttpServlet{
 		}
 		
 		//this is true
+		
+		if(registrationDAO.isCourseFull(courseId)) {
+			redirectWithMessage(response, request, "This course is already full.");
+			return;
+		}
+		
+		
 		boolean registered = registrationDAO.registerCourse(userId, courseId);
 		if(registered) {
 			redirectWithMessage(response, request, "Course registered successfully.");

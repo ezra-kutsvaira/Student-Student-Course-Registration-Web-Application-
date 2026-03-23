@@ -14,8 +14,8 @@ public class CourseDAO {
 	 private static final String INSERT_COURSE_SQL = "INSERT INTO courses (course_code, course_name, lecturer, credits, capacity) VALUES (?, ?, ?, ?, ?)";
      private static final String UPDATE_COURSE_SQL = "UPDATE courses SET course_code = ?, course_name = ?, lecturer = ?, credits = ?, capacity = ? WHERE course_id = ?";
      private static final String DELETE_COURSE_SQL = "DELETE FROM courses WHERE course_id = ?";
-     private static final String SELECT_ALL_COURSES_SQL = "SELECT course_id, course_code, course_name, lecturer, credits, capacity FROM courses";
-     private static final String SELECT_COURSE_BY_ID_SQL = "SELECT course_id, course_code, course_name, lecturer, credits, capacity FROM courses WHERE course_id = ?";
+     private static final String SELECT_ALL_COURSES_SQL = "SELECT c.course_id, c.course_code, c.course_name, c.lecturer, c.credits, c.capacity, COUNT(r.registration_id) AS enrolled_count FROM courses c LEFT JOIN registrations r ON c.course_id = r.course_id GROUP BY c.course_id, c.course_code, c.course_name, c.lecturer, c.credits, c.capacity ORDER BY c.course_code";
+     private static final String SELECT_COURSE_BY_ID_SQL = "SELECT c.course_id, c.course_code, c.course_name, c.lecturer, c.credits, c.capacity, COUNT(r.registration_id) AS enrolled_count FROM courses c LEFT JOIN registrations r ON c.course_id = r.course_id WHERE c.course_id = ? GROUP BY c.course_id, c.course_code, c.course_name, c.lecturer, c.credits, c.capacity";
      
     
      //add Course
@@ -23,6 +23,7 @@ public class CourseDAO {
     	 try (Connection connection = DBConnection.getConnection();
     	      PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COURSE_SQL)) {
     	 
+    		 
     	 	  	 preparedStatement.setString(1, course.getCourseCode());
     			 preparedStatement.setString(2, course.getCourseName());
     			 preparedStatement.setString(3, course.getLecturer());
@@ -78,15 +79,7 @@ public class CourseDAO {
                 ResultSet resultSet = preparedStatement.executeQuery()) {
 
                while (resultSet.next()) {
-                   Course course = new Course(
-                           resultSet.getInt("course_id"),
-                           resultSet.getString("course_code"),
-                           resultSet.getString("course_name"),
-                           resultSet.getString("lecturer"),
-                           resultSet.getInt("credits"),
-                           resultSet.getInt("capacity")
-                   );
-                   courses.add(course);
+            	   courses.add(mapCourse(resultSet));
                }
            } catch (SQLException e) {
                e.printStackTrace();
@@ -104,14 +97,7 @@ public class CourseDAO {
 
                try (ResultSet resultSet = preparedStatement.executeQuery()) {
                    if (resultSet.next()) {
-                       return new Course(
-                               resultSet.getInt("course_id"),
-                               resultSet.getString("course_code"),
-                               resultSet.getString("course_name"),
-                               resultSet.getString("lecturer"),
-                               resultSet.getInt("credits"),
-                               resultSet.getInt("capacity")
-                       );
+                	   return mapCourse(resultSet);
                    }
                }
            } catch (SQLException e) {
@@ -120,5 +106,15 @@ public class CourseDAO {
 
            return null;
        }
-       
+       private Course mapCourse(ResultSet resultSet) throws SQLException {
+           return new Course(
+                   resultSet.getInt("course_id"),
+                   resultSet.getString("course_code"),
+                   resultSet.getString("course_name"),
+                   resultSet.getString("lecturer"),
+                   resultSet.getInt("credits"),
+                   resultSet.getInt("capacity"),
+                   resultSet.getInt("enrolled_count")
+           );
+       }
 }

@@ -8,18 +8,24 @@ public class Course {
     private String lecturer;
     private int credits;
     private int capacity;
+    private int enrolledCount;
     
     //default 
     public Course() {}
-
-    //Constructor
+    
     public Course(int courseId, String courseCode, String courseName, String lecturer, int credits, int capacity) {
+    	this(courseId, courseCode, courseName, lecturer, credits, capacity, 0);
+    }
+    
+    //Constructor
+    public Course(int courseId, String courseCode, String courseName, String lecturer, int credits, int capacity, int enrolledCount ) {
     	this.courseId = courseId;
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.lecturer = lecturer;
         this.credits = credits;
         this.capacity = capacity;
+        this.enrolledCount = enrolledCount;
     }
     
     //Constructor without ID for overloading
@@ -80,7 +86,21 @@ public class Course {
 		this.capacity = capacity;
 	}
     
- 
+	public int getEnrolledCount() {
+		return enrolledCount;
+	}
+
+	public void setEnrolledCount(int enrolledCount) {
+		this.enrolledCount = enrolledCount;
+	}
+
+	public int getSlotsLeft() {
+		return Math.max(capacity - enrolledCount, 0);
+	}
+
+	public boolean isFull() {
+		return getSlotsLeft() == 0;
+	}
     
 
 }

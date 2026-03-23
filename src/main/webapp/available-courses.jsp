@@ -65,6 +65,8 @@ String message = request.getParameter("message");
               <th>Lecturer</th>
               <th>Credits</th>
               <th>Capacity</th>
+              <th>Enrollment</th>
+              <th>Slots left</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -76,11 +78,17 @@ String message = request.getParameter("message");
                 <td><%= course.getLecturer() %></td>
                 <td><%= course.getCredits() %></td>
                 <td><span class="badge success"><%= course.getCapacity() %> seats</span></td>
+                 <td><span class="badge info"><%= course.getEnrolledCount() %> enrolled</span></td>
+                <td><span class="badge <%= course.isFull() ? "warning" : "success" %>"><%= course.getSlotsLeft() %> left</span></td>
                 <td>
-                  <form class="inline" action="<%= request.getContextPath() %>/RegisterCourseServlet" method="post" data-confirm="Register for <%= course.getCourseCode() %> - <%= course.getCourseName() %>?">
-                    <input type="hidden" name="courseId" value="<%= course.getCourseId() %>">
-                    <button class="btn btn-success" type="submit">Register</button>
-                  </form>
+                  <% if (course.isFull()) { %>
+                    <button class="btn btn-secondary" type="button" disabled>Course full</button>
+                  <% } else { %>
+                    <form class="inline" action="<%= request.getContextPath() %>/RegisterCourseServlet" method="post" data-confirm="Register for <%= course.getCourseCode() %> - <%= course.getCourseName() %>?">
+                      <input type="hidden" name="courseId" value="<%= course.getCourseId() %>">
+                      <button class="btn btn-success" type="submit">Register</button>
+                    </form>
+                  <% } %>
                 </td>
               </tr>
             <% } %>
