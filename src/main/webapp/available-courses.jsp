@@ -1,6 +1,7 @@
 <%@ page import="java.util.List,model.Course" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+String assetVersion = "20260323";
 String username = (String) session.getAttribute("username");
 String role = (String) session.getAttribute("role");
 if (username == null || role == null || !"STUDENT".equalsIgnoreCase(role)) {
@@ -16,7 +17,7 @@ String message = request.getParameter("message");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Available Courses</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/assets/app.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/assets/app.css?v=<%= assetVersion %>">
 </head>
 <body>
 <div class="container">
@@ -98,6 +99,6 @@ String message = request.getParameter("message");
     <% } %>
   </section>
 </div>
-<script src="<%= request.getContextPath() %>/assets/app.js"></script>
+<script src="<%= request.getContextPath() %>/assets/app.js?v=<%= assetVersion %>"></script>
 </body>
 </html>
