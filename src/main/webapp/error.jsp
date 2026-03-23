@@ -25,5 +25,6 @@
     </div>
   </section>
 </div>
+<script src="<%= request.getContextPath() %>/assets/app.js?v=<%= assetVersion %>"></script>
 </body>
 </html>

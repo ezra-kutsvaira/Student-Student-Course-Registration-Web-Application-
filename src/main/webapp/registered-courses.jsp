@@ -81,6 +81,8 @@ if (courses != null) {
               <th>Lecturer</th>
               <th>Credits</th>
               <th>Capacity</th>
+              <th>Enrollment</th>
+              <th>Slots left</th>
             </tr>
           </thead>
           <tbody id="registeredCourseBody">
@@ -90,7 +92,9 @@ if (courses != null) {
                 <td><strong><%= course.getCourseName() %></strong></td>
                 <td><%= course.getLecturer() %></td>
                 <td><%= course.getCredits() %></td>
-                <td><%= course.getCapacity() %></td>
+               	<td><span class="badge success"><%= course.getCapacity() %> seats</span></td>
+                <td><span class="badge info"><%= course.getEnrolledCount() %> enrolled</span></td>
+                <td><span class="badge <%= course.isFull() ? "warning" : "success" %>"><%= course.getSlotsLeft() %> left</span></td>
               </tr>
             <% } %>
           </tbody>

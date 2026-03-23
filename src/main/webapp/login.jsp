@@ -57,5 +57,6 @@ String errorMessage = (String) request.getAttribute("errorMessage");
     </section>
   </div>
 </div>
+<script src="<%= request.getContextPath() %>/assets/app.js?v=<%= assetVersion %>"></script>
 </body>
 </html>
