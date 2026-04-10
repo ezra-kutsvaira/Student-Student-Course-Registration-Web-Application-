@@ -23,7 +23,7 @@ if (username == null || role == null || !"STUDENT".equalsIgnoreCase(role)) {
       <div class="brand-badge">🎓</div>
       <div>
         <h2>Student Dashboard</h2>
-        <p>Hello, <strong><%= username %></strong>. Ready to plan your semester?</p>
+        <p>Hello, <strong><%= username %></strong>. You can review and manage your semester registrations here.</p>
       </div>
     </div>
     <div class="nav-actions">
@@ -34,20 +34,20 @@ if (username == null || role == null || !"STUDENT".equalsIgnoreCase(role)) {
 
   <section class="hero">
     <div class="glass hero-card">
-      <span class="eyebrow">📚 Semester planning made simple</span>
-      <h1>Choose courses with <span class="highlight">clarity and confidence</span></h1>
-      <p>Explore available courses, register in a few clicks, and revisit your enrolled list whenever you want. The experience is streamlined so you can focus on learning.</p>
+      <span class="eyebrow">Student Registration Center</span>
+      <h1>Register for courses with <span class="highlight">clarity and confidence</span></h1>
+      <p>Review available courses, submit registrations, and verify your enrolled courses through a clear and organized student workflow.</p>
       <div class="actions-inline" style="margin-top: 20px;">
         <a class="btn btn-primary" href="<%= request.getContextPath() %>/AvailableCoursesServlet">View available courses</a>
         <a class="btn btn-secondary" href="<%= request.getContextPath() %>/ViewRegisteredCoursesServlet">My registered courses</a>
       </div>
     </div>
     <aside class="glass info-card">
-      <h3 style="margin-top:0;">Student quick actions</h3>
+      <h3 style="margin-top:0;">Student actions</h3>
       <div class="card-list">
-        <div class="info-item"><div class="info-icon">🔎</div><div><strong>Discover options</strong><div class="muted">Browse course codes, lecturers, credits, and capacity at a glance.</div></div></div>
-        <div class="info-item"><div class="info-icon">📝</div><div><strong>Register instantly</strong><div class="muted">Submit course registrations directly from the course list.</div></div></div>
-        <div class="info-item"><div class="info-icon">✅</div><div><strong>Track enrollment</strong><div class="muted">Review your registered course list whenever needed.</div></div></div>
+        <div class="info-item"><div class="info-icon">🔎</div><div><strong>Review offerings</strong><div class="muted">Browse course codes, lecturers, credits, and remaining capacity.</div></div></div>
+        <div class="info-item"><div class="info-icon">📝</div><div><strong>Submit registration</strong><div class="muted">Register directly from the course list with immediate feedback.</div></div></div>
+        <div class="info-item"><div class="info-icon">✅</div><div><strong>Confirm enrollment</strong><div class="muted">Open your registered course list to verify your current selections.</div></div></div>
       </div>
     </aside>
   </section>

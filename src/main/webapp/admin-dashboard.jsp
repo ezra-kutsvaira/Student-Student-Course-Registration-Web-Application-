@@ -34,20 +34,20 @@ if (username == null || role == null || !"ADMIN".equalsIgnoreCase(role)) {
 
   <section class="hero">
     <div class="glass hero-card">
-      <span class="eyebrow">⚡ Admin productivity</span>
-      <h1>Build and maintain a <span class="highlight">high-quality course catalog</span></h1>
-      <p>Create new courses, review every record, and keep student registration opportunities current. This dashboard gives you fast access to the full course management workflow.</p>
+      <span class="eyebrow">Administrator Workspace</span>
+      <h1>Manage and maintain a <span class="highlight">high-quality course catalog</span></h1>
+      <p>Create and update course records, review catalog data, and keep registration options current through a centralized management workflow.</p>
       <div class="actions-inline" style="margin-top: 20px;">
-        <a class="btn btn-primary" href="<%= request.getContextPath() %>/ViewCoursesServlet">Open course management</a>
+        <a class="btn btn-primary" href="<%= request.getContextPath() %>/ViewCoursesServlet">Go to course management</a>
         <button class="btn btn-secondary" type="button" data-copy-text="ADMIN: <%= username %>">Copy admin identity</button>
       </div>
     </div>
     <aside class="glass info-card">
-      <h3 style="margin-top:0;">Admin quick guide</h3>
+      <h3 style="margin-top:0;">Administrative actions</h3>
       <div class="card-list">
-        <div class="info-item"><div class="info-icon">➕</div><div><strong>Add courses</strong><div class="muted">Create new offerings with credits, lecturer, and capacity details.</div></div></div>
-        <div class="info-item"><div class="info-icon">✏️</div><div><strong>Edit details</strong><div class="muted">Adjust records quickly when schedules or staffing change.</div></div></div>
-        <div class="info-item"><div class="info-icon">🗑️</div><div><strong>Clean the catalog</strong><div class="muted">Remove outdated courses with a safe confirmation flow.</div></div></div>
+        <div class="info-item"><div class="info-icon">➕</div><div><strong>Create courses</strong><div class="muted">Add new offerings with credits, lecturer details, and seat capacity.</div></div></div>
+        <div class="info-item"><div class="info-icon">✏️</div><div><strong>Update records</strong><div class="muted">Modify course information when schedules, staffing, or allocations change.</div></div></div>
+        <div class="info-item"><div class="info-icon">🗑️</div><div><strong>Retire courses</strong><div class="muted">Remove outdated entries with confirmation to prevent accidental deletion.</div></div></div>
       </div>
     </aside>
   </section>
