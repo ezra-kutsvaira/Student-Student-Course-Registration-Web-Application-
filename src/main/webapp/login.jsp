@@ -15,14 +15,14 @@ String errorMessage = (String) request.getAttribute("errorMessage");
 <div class="login-shell">
   <div class="login-layout">
     <section class="glass login-panel">
-      <span class="eyebrow">🎓 Smart registration experience</span>
+      <span class="eyebrow">Academic Registration Portal</span>
       <h1>Welcome to the <span class="highlight">Student Course Registration System</span></h1>
-      <p>Sign in to manage course offerings, track registrations, and keep every academic workflow simple, secure, and beautifully organized.</p>
+      <p>Sign in to access secure, role-specific tools for course management, enrollment, and academic record review.</p>
 
       <div class="metric-row">
-        <div class="metric-box"><strong>Role-based</strong><span class="muted">Admin and student experiences tailored to each user.</span></div>
-        <div class="metric-box"><strong>Fast actions</strong><span class="muted">Quick links for course creation, registration, and review.</span></div>
-        <div class="metric-box"><strong>JSP + Servlet</strong><span class="muted">A polished UI built on the app's existing Java backend.</span></div>
+        <div class="metric-box"><strong>Role-Based Access</strong><span class="muted">Separate interfaces for administrators and students with appropriate permissions.</span></div>
+        <div class="metric-box"><strong>Efficient Workflow</strong><span class="muted">Direct navigation for course creation, enrollment, and progress tracking.</span></div>
+        <div class="metric-box"><strong>Reliable Platform</strong><span class="muted">Professional JSP interface integrated with the existing Java Servlet backend.</span></div>
       </div>
     </section>
 
